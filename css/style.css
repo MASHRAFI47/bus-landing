@@ -1,0 +1,23 @@
+.font-raleway {
+    font-family: "Raleway", sans-serif;
+}
+.btn-classic {
+    color: #000;
+    background-color: #1DD100 !important;
+    padding: 12px 24px;
+    border: 1px solid #1DD100 !important;
+}
+.btn-classic:hover {
+    background-color: transparent !important;
+    color: #1DD100;
+}
+.bordered {
+    border-bottom: 2px solid #1DD100;
+    border-radius: 20px;
+}
+section {
+    margin-bottom: 90px;
+}
+.dashed-border {
+    border-bottom: 2px dashed #03071233;
+}
