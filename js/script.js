@@ -13,12 +13,20 @@ let price = 550;
 
 let sum = 0;
 
+let array = [];
+console.log(array)
+
+console.log(array.length)
 
 for (let index = 0; index < btns.length; index++) {
+
     const element = btns[index];
     function clickHandler(event) {
         element.classList.add('bg-[#1DD100]')
         element.classList.add('text-white')
+
+        array.push(element)
+
         btnLength = btnLength - 1;
         seatAvailable.innerText = btnLength;
 
@@ -55,6 +63,8 @@ for (let index = 0; index < btns.length; index++) {
             div.append(priceTag);
 
             sum = sum + newPrice;
+
+
         }
         else {
             seatCount.innerText = 4;
@@ -76,13 +86,13 @@ for (let index = 0; index < btns.length; index++) {
 
         //condition to next button
         const numberField = document.getElementById('number-field');
-        if(count >= 1) {
+        if (count >= 1) {
             const nextBtn = document.getElementById('next-btn');
             nextBtn.removeAttribute('disabled');
         }
     }
-    
-    element.addEventListener('click', clickHandler);    
+
+    element.addEventListener('click', clickHandler);
 }
 
 
@@ -93,7 +103,7 @@ couponApply.addEventListener('click', function () {
     if (couponCode.value === "NEW15") {
         const totalPrice = document.getElementById('total-price');
         const totalPriceAmount = parseInt(totalPrice.innerText);
-        const discountedPrice = totalPriceAmount * (15/100);
+        const discountedPrice = totalPriceAmount * (15 / 100);
 
         const discountPrice = document.getElementById('discount-price');
         discountPrice.innerText = discountedPrice;
@@ -107,10 +117,10 @@ couponApply.addEventListener('click', function () {
         const grandTotal = document.getElementById('grand-total');
         grandTotal.innerText = totalPriceAmount - discountPrice.innerText;
     }
-    else if(couponCode.value === "Couple 20") {
+    else if (couponCode.value === "Couple 20") {
         const totalPrice = document.getElementById('total-price');
         const totalPriceAmount = parseInt(totalPrice.innerText);
-        const discountedPrice = totalPriceAmount * (20/100);
+        const discountedPrice = totalPriceAmount * (20 / 100);
 
         const discountPrice = document.getElementById('discount-price');
         discountPrice.innerText = discountedPrice;
@@ -131,3 +141,5 @@ function numberElement(elementId) {
     const elementNumber = parseInt(element.innerText);
     return elementNumber;
 }
+
+
