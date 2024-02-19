@@ -160,3 +160,7 @@ function numberElement(elementId) {
 }
 
 
+const continueBtn = document.getElementById('continue-btn');
+continueBtn.addEventListener('click', function() {
+    window.location.reload();
+})
