@@ -14,12 +14,10 @@ let price = 550;
 let sum = 0;
 
 let array = [];
-console.log(array)
 
 let newArr = []
 
 
-console.log(array.length)
 
 for (let index = 0; index < btns.length; index++) {
 
@@ -46,7 +44,6 @@ for (let index = 0; index < btns.length; index++) {
                 const p = document.createElement('p');
                 p.innerText = btnText;
                 newArr.push(p.innerText)
-                console.log(newArr)
 
                 div.append(p);
                 seatName.appendChild(div);
