@@ -16,64 +16,75 @@ let sum = 0;
 let array = [];
 console.log(array)
 
+let newArr = []
+
+
 console.log(array.length)
 
 for (let index = 0; index < btns.length; index++) {
 
     const element = btns[index];
+    array.push(element)
+
     function clickHandler(event) {
-        element.classList.add('bg-[#1DD100]')
-        element.classList.add('text-white')
+        element.classList.add('bg-[#1DD100]');
+        element.classList.add('text-white');
 
-        array.push(element)
+        if (!array.includes(element.innerText)) {
+            array.push(element.innerText)
+            btnLength = btnLength - 1;
+            seatAvailable.innerText = btnLength;
+            if (newArr.length <= 3) {
+                const btnText = element.innerText;
+                const seatName = document.getElementById('seat-name');
 
-        btnLength = btnLength - 1;
-        seatAvailable.innerText = btnLength;
+                const div = document.createElement('div');
+                div.classList.add('flex');
+                div.classList.add('justify-between')
+                div.classList.add('py-2')
 
-        count++;
+                const p = document.createElement('p');
+                p.innerText = btnText;
+                newArr.push(p.innerText)
+                console.log(newArr)
 
-        const seatCount = document.getElementById('seat-count');
-        seatCount.innerText = count;
+                div.append(p);
+                seatName.appendChild(div);
+
+                const anotherP = document.createElement('p');
+                anotherP.innerText = "economic";
+                div.append(anotherP);
+
+                const priceTag = document.createElement('p');
+                priceTag.innerText = 550;
+                const newPriceTag = priceTag.innerText;
+                const newPrice = parseInt(newPriceTag)
+                div.append(priceTag);
+
+                sum = sum + newPrice;
+
+
+            }
+            else {
+                const seatCount = document.getElementById('seat-count');
+                seatCount.innerText = newArr.length;
+                alert("You can't buy more than 4 seats");
+                element.setAttribute('disabled', true);
+    
+                let seatAvailable = document.getElementById('seat-available');
+                seatAvailable.innerText = btns.length - newArr.length;
+            }
+            
+        }
+
+
+        if (newArr.length <= 4) {
+            const seatCount = document.getElementById('seat-count');
+            seatCount.innerText = newArr.length;
+        }
+        
 
         arr.push(event.target);
-
-        if (count <= 4) {
-            const btnText = element.innerText;
-            const seatName = document.getElementById('seat-name');
-
-            const div = document.createElement('div');
-            div.classList.add('flex');
-            div.classList.add('justify-between')
-            div.classList.add('py-2')
-
-            const p = document.createElement('p');
-            p.innerText = btnText;
-
-            div.append(p);
-            seatName.appendChild(div);
-
-            const anotherP = document.createElement('p');
-            anotherP.innerText = "economic";
-            div.append(anotherP);
-
-            const priceTag = document.createElement('p');
-            priceTag.innerText = 550;
-            const newPriceTag = priceTag.innerText;
-            const newPrice = parseInt(newPriceTag)
-            div.append(priceTag);
-
-            sum = sum + newPrice;
-
-
-        }
-        else {
-            seatCount.innerText = 4;
-            alert("You can't buy more than 4 seats");
-            element.setAttribute('disabled', true);
-
-            let seatAvailable = document.getElementById('seat-available');
-            seatAvailable.innerText = 36;
-        }
 
         //pull total price
         const totalPrice = document.getElementById('total-price');
@@ -86,7 +97,7 @@ for (let index = 0; index < btns.length; index++) {
 
         //condition to next button
         const numberField = document.getElementById('number-field');
-        if (count >= 1) {
+        if (array.length >= 1) {
             const nextBtn = document.getElementById('next-btn');
             nextBtn.removeAttribute('disabled');
         }
@@ -94,6 +105,15 @@ for (let index = 0; index < btns.length; index++) {
 
     element.addEventListener('click', clickHandler);
 }
+
+const couponCode = document.getElementById('coupon-code');
+couponCode.addEventListener('keyup', function () {
+    if (couponCode.value === "NEW15" || couponCode.value === "Couple 20") {
+        couponApply.removeAttribute('disabled');
+    } else {
+        couponApply.setAttribute('disabled', true)
+    }
+})
 
 
 const couponApply = document.getElementById('coupon-apply');
